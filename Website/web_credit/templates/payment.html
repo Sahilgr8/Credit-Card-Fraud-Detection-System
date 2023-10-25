@@ -1,0 +1,149 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+    body {
+        background: linear-gradient(to right, rgba(235, 224, 232, 1) 52%, rgba(254, 191, 1, 1) 53%, rgba(254, 191, 1, 1) 100%);
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .card {
+        border: none;
+        max-width: 450px;
+        border-radius: 15px;
+        margin: 150px 0 150px;
+        padding: 35px;
+        padding-bottom: 20px !important;
+    }
+
+    .heading {
+        color: #C1C1C1;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    img {
+        transform: translate(160px, -10px);
+    }
+
+    img:hover {
+        cursor: pointer;
+    }
+
+    .text-warning {
+        font-size: 12px;
+        font-weight: 500;
+        color: #edb537 !important;
+    }
+
+    #cno {
+        transform: translateY(-10px);
+    }
+
+    input {
+        border-bottom: 1.5px solid #E8E5D2 !important;
+        font-weight: bold;
+        border-radius: 0;
+        border: 0;
+
+    }
+
+    .form-group input:focus {
+        border: 0;
+        outline: 0;
+    }
+
+    .col-sm-5 {
+        padding-left: 90px;
+    }
+
+    .btn {
+        background: #F3A002 !important;
+        border: none;
+        border-radius: 30px;
+    }
+
+    .btn:focus {
+        box-shadow: none;
+    }
+</style>
+
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+    
+        <div class="col-sm-12">
+        
+            <div class="card mx-auto">
+            <!-- 
+            <div class="alert alert-success" role="alert">
+                  {{msg}}
+            </div>-->
+                <p class="heading">PAYMENT DETAILS</p>
+                <form action="/payment" class="card-details " method="POST">                    
+                    <div class="form-group">
+                         <label class="text-warning mb-0"> Cardholder's Name</label>&nbsp&nbsp <input type="text" name="name"
+                            placeholder="Name" size="17">
+                    </div>
+                    <div class="form-group">
+                         <!-- <label class="text-warning mb-0">Total Amount</label>&nbsp&nbsp  {{totalPrice1}}  -->
+                         <label class="text-warning mb-0">Total Amount</label>
+                       <input name="amount" value="${{totalPrice1}}" placeholder="{{totalPrice1}}" readonly>
+                            
+                    </div>
+                    <div class="form-group">
+                        <label class="text-warning mb-0">Enter category:</label>&nbsp&nbsp
+                        <select id="category" class="slelectstyle" name="category">
+                            <option>Select category</option>
+                            {% for cat,cat_lbl in final_category %}
+                            <option value="{{cat_lbl}}">{{cat}}</option>
+                            {% endfor %}
+                        </select><br/></div>
+                    
+                    <div class="form-group">                       
+                        <label class="text-warning mb-0">Enter gender:</label>&nbsp&nbsp
+                        <select id="gender" class="slelectstyle" name="gender">
+                            <option>Select gender</option>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select><br/>
+                        
+                    </div>
+                   
+				    <div class="form-group">
+                        <label class="text-warning mb-0">Enter city:</label>&nbsp&nbsp
+                        <select id="city" class="slelectstyle" name="city">
+                            <option>Select city</option>
+                            {% for cit, cit_lbl in final_city %}
+                            <option value="{{cit_lbl}}">{{cit}}</option>
+                            {% endfor %}
+                        </select><br/>
+					</div>
+					<div class="form-group">
+                        <label class="text-warning mb-0">Enter state:</label>&nbsp&nbsp
+                        <select id="state" class="slelectstyle" name="state">
+                            <option>Select state</option>
+                            {% for sta, stat_lbl in final_state %}
+                            <option value="{{stat_lbl}}">{{sta}}</option>
+                            {% endfor %}
+                        </select><br/> 
+					</div>
+                    
+                    <div class="form-group pt-2">
+                        <div class="row d-flex">
+                            <div class="col-sm-5 pt-0">
+                                <button type="submit" name="submit" class="btn btn-primary"><i
+                                        class="fas fa-arrow-right px-3 py-2"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

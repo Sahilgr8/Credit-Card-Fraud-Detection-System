@@ -1,0 +1,50 @@
+{% extends 'homeheader.html'%}
+{% block content %}
+
+<section class="w3l-contacts-12" id="contact">
+    <div class="contact-top pt-5">
+        <center><h3>Lets Predict:</h3></center>
+        <div class="container py-md-3">
+            
+            <div class="row cont-main-top">
+                <div class="contacts12-main col-lg-8 mt-lg-0 mt-5">
+                                
+                    <form action="/credit" method="post" class="main-input">
+                        <div class="top-inputs d-grid">
+                
+                        
+                            <label>Enter Amount:</label>
+                            <input type="text" placeholder="Enter Amount ex. 2500" name="amount" id="w3lName" required="">
+                            <label>Enter zip:</label>
+                            <input type="text" placeholder="Enter zip Ex.28654" name="zip" id="w3lName" required="">
+                            <label>Enter Latitude:</label>
+                            <input type="text" placeholder="Enter Latitude Ex.36.0788" name="lat" id="w3lName" required="">
+                            <label>Enter Longitude:</label>
+                            <input type="text" placeholder="Enter Longitude Ex.-81.1781" name="long" id="w3lName" required="">
+                            <label>Enter Merchant Latitude:</label>
+                            <input type="text" placeholder="Enter Merchant Latitude Ex.36.011293 " name="merch_lat" id="merch_lat" required="">
+                            <label>Enter Merchant Logitude:</label>
+                            <input type="text" placeholder="Enter  Merchant Logitude Ex. -82.048315" name="merch_long" id="w3lName" required="">
+                            <label>Enter Age:</label>
+                            <input type="text" placeholder="Enter Age  Ex. 23" name="age" id="w3lName" required="">
+                         </div>
+                        <!-- <textarea placeholder="Message" name="w3lMessage" id="w3lMessage" required=""></textarea> -->
+                        <br>
+                        <br>
+                       
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-theme2"> Predict</button>
+                        </div>
+                        <br>
+                        <br>
+                        {% for message in get_flashed_messages() %}
+                        <div class="alert alert-success" role="alert">
+                            <div class="flash contact-input">{{ message }}</div>
+                          </div>
+                        {% endfor %}
+                    </form>
+                </div>
+</section>
+
+{% endblock %}

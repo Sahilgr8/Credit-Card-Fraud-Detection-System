@@ -1,0 +1,70 @@
+def proposedlogic(finaldff):
+    threshold=0.50
+    df1=pd.read_csv('wrongoutput.csv',sep=',',error_bad_lines=False)
+
+    print(len(df1))
+    print(df1)
+    df=df1#.sample(n=1000,replace=True)
+    X = df.iloc[:,:-1].values # We drop our "target" feature and use all the remaining features in our dataframe to train the model.
+    y = df.iloc[:,11].values
+
+    X = df[['gender','cholesterol','smoke','alco','active']] # here we have 2 variables for multiple regression. If you just want to use one variable for simple linear regression, then use X = df['Interest_Rate'] for example.Alternatively, you may add additional variables within the brackets
+    Y = df['cardio']
+    X1 = X.iloc[:,:].values # We drop our "target" feature and use all the remaining features in our dataframe to train the model.
+    finaldff = finaldff.apply(pd.to_numeric, errors='coerce')
+    X2=finaldff.iloc[:,:].values
+    
+    #X2=[float(i) for i in X21]
+    outexpect=[]
+    overall=[]
+    for row in X2:
+        countis=0
+        for row1 in X1:
+            print(row1)
+            y=row
+            print('yis ',y)
+            summation = 0
+            print('check1')
+            y_bar=row1
+            print('y check ',y_bar)
+            print('check11',y_bar,'second is',y)
+            #if y!=y_bar:
+            print('check2')
+            n = len(y) #finding total number of items in list
+            for i in range (0,n):  #looping through each element of the list
+                difference = float(y[i]) - float(y_bar[i])  #finding the difference between observed and predicted value
+                squared_difference = difference**2  #taking square of the differene 
+                summation = summation + squared_difference  #taking a sum of all the differences
+            MSE = summation/n  #dividing summation by total values to obtain average
+            print("The Mean Square Error is: " , MSE)
+            dst = distance.euclidean(y, y_bar)
+            print("dst is: " , dst)
+            if dst<0.02:
+                outexpect.append(1.0)
+            else:
+                outexpect.append(0.0)
+            if MSE<=0.5:
+                outexpect.append(1.0)
+            else:
+                outexpect.append(0.0)
+            #outexpect+=1
+            #if len(outexpect)>len(X1):
+            if len(outexpect)>10:
+                break
+    #outexpect.append(valis)
+    #y_actu.append(expected)
+    valmax=max(outexpect,key=outexpect.count)
+    #outexpect
+    overall.append(valmax)
+    print('from the logic',valmax)
+    return valmax
+    #print(val,valis)
+
+
+outputofproposed=proposedlogic(finaldff)
+            if outputofproposed==0.0:
+                flash(" According to proposed system Heart Disease is Not Detected")
+                
+                array.append(0)
+            else:
+                flash(" According to proposed system Heart Disease  Detected")
